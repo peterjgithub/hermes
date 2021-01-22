@@ -1,13 +1,9 @@
-pip install Flask
-pip install json
-pip install urllib
-pip install datetime
-pip install -U python-dotenv
+./start.zsh 
 
-(install virtual environment:
-python3 -m venv venv
-)
-
-. venv/bin/activate
-export FLASK_APP=hermes.py
+manual:
+source venv/bin/activate
 flask run
+ctrl-c
+deactivate
+
+pip freeze > requirements.txt
