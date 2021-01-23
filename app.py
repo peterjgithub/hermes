@@ -20,7 +20,7 @@ def get_url_content(url: str):
 
 @app.route("/")
 def home():
-    url = 'https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/minute/2020-11-01/"' + _tdate + '"?apiKey=HBSH9Fc30LZbumAvQXssFHbqw8jBgoeEcI3nTe'
+    url = 'https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2020-11-01/"' + _tdate + '"?apiKey=HBSH9Fc30LZbumAvQXssFHbqw8jBgoeEcI3nTe'
     content = get_url_content(url)
     aapl_data = content["results"]
     return render_template("home.html", source=aapl_data)
