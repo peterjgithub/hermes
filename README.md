@@ -6,22 +6,19 @@ stock exchanges, quotes, technical analysis, etc
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install hermes.
 
 ```bash
-pip install ???
-see requirements.txt to install all packages
+pip install xxx
 ```
+see requirements.txt to install all packages
 
 ## Usage
 
-starting flask app:
+starting flask app in dev:
 ```
 source venv/bin/activate
 flask run
 ```
 
-when finished:
-ctrl+c
-
-and terminate venv:
+when finished: stop flask (ctrl+c) and terminate venv:
 ```
 deactivate
 ```
