@@ -56,8 +56,39 @@
 		</div>
 		<div class="row">
 			<div class="col">
-				<h1>Our Tading app is running </h1>
-				<h3>We got data and now analysis part</h3>
+				<h1>AAPL </h1>
+				<!-- {'v': 7617, 'vw': 109.442, 'o': 109.62, 'c': 109.15, 'h': 109.62, 'l': 109.02, 't': 1604307600000, 'n': 55} -->
+				<div class="table-responsive">
+					<table class="table table-hover table-sm">
+						<caption>AAPL quotes</caption>
+						<thead class="thead-light">
+							<tr>
+								<th scope="col">time</th>
+								<th scope="col">volume</th>
+								<th scope="col">vw ?</th>
+								<th scope="col">open</th>
+								<th scope="col">close</th>
+								<th scope="col">high</th>
+								<th scope="col">low</th>
+								<th scope="col">n ??</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for quote in source %}
+							<tr>
+								<th scope="row">{{quote.t}}</th>
+								<td>{{quote.v}}</td>
+								<td>{{quote.vw}}</td>
+								<td>{{quote.o}}</td>
+								<td>{{quote.c}}</td>
+								<td>{{quote.h}}</td>
+								<td>{{quote.l}}</td>
+								<td>{{quote.n}}</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
 				<span>{{source_to_html_from_app}}</span>
 			</div>
 		</div>
