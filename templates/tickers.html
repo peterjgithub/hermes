@@ -29,7 +29,7 @@
 		<div class="row">
 			<div class="col">
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
-					<a class="navbar-brand" href="#">Home</a>
+					<a class="navbar-brand" href="#">Tickers</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
 						aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -54,11 +54,42 @@
 			</div>
 
 		</div>
+		
 		<div class="row">
 			<div class="col">
-				<h1>Our Tading app is running </h1>
-				<h3>We got data and now analysis part</h3>
-				<span>{{source_to_html_from_app}}</span>
+				<h1>First Tickers </h1>
+				<table>
+					<tr>
+						<th>ticker</th>
+						<th>name</th>
+						<th>market</th>
+						<th>locale</th>
+						<th>type</th>
+						<th>currency</th>
+						<th>active</th>
+						<th>primaryExch</th>
+						<th>updated</th>
+						<th>codes</th>
+						<th>url</th>
+						<th>market</th>
+					</tr>
+					{% for tickers in source %}
+					<tr>
+						<td>{{tickers.ticker}}</td>
+						<td>{{tickers.name}}</td>
+						<td>{{tickers.market}}</td>
+						<td>{{tickers.locale}}</td>
+						<td>{{tickers.type}}</td>
+						<td>{{tickers.currency}}</td>
+						<td>{{tickers.active}}</td>
+						<td>{{tickers.primaryExch}}</td>
+						<td>{{tickers.updated}}</td>
+						<td>{{tickers.codes}}</td>
+						<td>{{tickers.url}}</td>
+						<td>{{tickers.market}}</td>
+					</tr>
+					{% endfor %}
+				</div>
 			</div>
 		</div>
 		<div class="row">
