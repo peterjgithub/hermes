@@ -13,22 +13,18 @@ see requirements.txt to install all packages
 ## Usage
 
 starting flask app:
-
+```
 source venv/bin/activate
 flask run
-
-after:
-deactivate
-
-```starting flask app:
-
-source venv/bin/activate
-flask run
-
-after:
-deactivate
 ```
 
+when finished:
+ctrl+c
+
+and terminate venv:
+```
+deactivate
+```
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
