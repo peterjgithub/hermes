@@ -1,11 +1,3 @@
-./start.zsh 
 
-manual:
-source venv/bin/activate
-flask run
-ctrl-c
-deactivate
-
-pip freeze > requirements.txt
 
 fix digitalocean issues: https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-app-using-gunicorn-to-app-platform

@@ -22,6 +22,12 @@ when finished: stop flask (ctrl+c) and terminate venv:
 ```
 deactivate
 ```
+
+generate requirements.txt:
+```
+pip freeze > requirements.txt
+```
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
