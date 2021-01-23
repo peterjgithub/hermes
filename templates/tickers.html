@@ -7,18 +7,19 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	
+
 	<style>
 		body {
-		  margin-bottom: 60px;
+			margin-bottom: 60px;
 		}
+
 		.footer {
-		  height: 40px;
-		  line-height: 40px;
-		  background-color: #f5f5f5;
+			height: 40px;
+			line-height: 40px;
+			background-color: #f5f5f5;
 		}
-	  </style>
-	
+	</style>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -54,49 +55,56 @@
 			</div>
 
 		</div>
-		
+
 		<div class="row">
 			<div class="col">
-				<h1>First Tickers </h1>
-				<table>
-					<tr>
-						<th>ticker</th>
-						<th>name</th>
-						<th>market</th>
-						<th>locale</th>
-						<th>type</th>
-						<th>currency</th>
-						<th>active</th>
-						<th>primaryExch</th>
-						<th>updated</th>
-						<th>market</th>
-						<th>codes</th>
-					</tr>
-					{% for tickers in source %}
-					<tr>
-						<td><a href="{{tickers.url}}">{{tickers.ticker}}</a></td>
-						<td>{{tickers.name}}</td>
-						<td>{{tickers.market}}</td>
-						<td>{{tickers.locale}}</td>
-						<td>{{tickers.type}}</td>
-						<td>{{tickers.currency}}</td>
-						<td>{{tickers.active}}</td>
-						<td>{{tickers.primaryExch}}</td>
-						<td>{{tickers.updated}}</td>
-						<td>{{tickers.market}}</td>
-						<td>{{tickers.codes}}</td>
-					</tr>
-					{% endfor %}
+				<h1>First Tickers</h1>
+				<div class="table-responsive">
+					<table class="table table-hover table-sm">
+						<caption>List of tickers</caption>
+						<thead class="thead-light">
+							<tr>
+								<th scope="col">ticker</th>
+								<th scope="col">name</th>
+								<th scope="col">market</th>
+								<th scope="col">locale</th>
+								<th scope="col">type</th>
+								<th scope="col">currency</th>
+								<th scope="col">active</th>
+								<th scope="col">primaryExch</th>
+								<th scope="col">updated</th>
+								<th scope="col">market</th>
+								<th scope="col">codes</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for tickers in source %}
+							<tr>
+								<th scope="row"><a href="{{tickers.url}}">{{tickers.ticker}}</a></th>
+								<td>{{tickers.name}}</td>
+								<td>{{tickers.market}}</td>
+								<td>{{tickers.locale}}</td>
+								<td>{{tickers.type}}</td>
+								<td>{{tickers.currency}}</td>
+								<td>{{tickers.active}}</td>
+								<td>{{tickers.primaryExch}}</td>
+								<td>{{tickers.updated}}</td>
+								<td>{{tickers.market}}</td>
+								<td>{{tickers.codes}}</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col text-center">
-			  <div class="footer fixed-bottom">
-				©2021
-			  </div>
+				<div class="footer fixed-bottom">
+					©2021
+				</div>
 			</div>
-		  </div>
+		</div>
 	</div>
 </body>
 
