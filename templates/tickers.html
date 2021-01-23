@@ -69,13 +69,12 @@
 						<th>active</th>
 						<th>primaryExch</th>
 						<th>updated</th>
-						<th>codes</th>
-						<th>url</th>
 						<th>market</th>
+						<th>codes</th>
 					</tr>
 					{% for tickers in source %}
 					<tr>
-						<td>{{tickers.ticker}}</td>
+						<td><a href="{{tickers.url}}">{{tickers.ticker}}</a></td>
 						<td>{{tickers.name}}</td>
 						<td>{{tickers.market}}</td>
 						<td>{{tickers.locale}}</td>
@@ -84,9 +83,8 @@
 						<td>{{tickers.active}}</td>
 						<td>{{tickers.primaryExch}}</td>
 						<td>{{tickers.updated}}</td>
-						<td>{{tickers.codes}}</td>
-						<td>{{tickers.url}}</td>
 						<td>{{tickers.market}}</td>
+						<td>{{tickers.codes}}</td>
 					</tr>
 					{% endfor %}
 				</div>

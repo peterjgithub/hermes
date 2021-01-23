@@ -34,7 +34,7 @@ def exchanges():
 
 @app.route("/tickers")
 def tickers():
-    url = 'https://api.polygon.io/v2/reference/tickers?sort=ticker&type=cs&perpage=5&page=1&apiKey=0kJfuiJORnO7nGk_Sh2EUiOJWeKpT04p'
+    url = 'https://api.polygon.io/v2/reference/tickers?sort=ticker&type=cs&perpage=20&page=1&apiKey=0kJfuiJORnO7nGk_Sh2EUiOJWeKpT04p'
     content = get_url_content(url)
     mytickers = content["tickers"]
     return render_template("tickers.html", source=mytickers)
