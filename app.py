@@ -3,7 +3,10 @@ from urllib.request import urlopen
 from datetime import date
 import json
 from dotenv import load_dotenv
+import os
 load_dotenv()
+
+POLYGON_APIKEY = os.getenv("POLYGON_APIKEY")
 
 app = Flask(__name__)
 today = date.today()    
@@ -20,7 +23,8 @@ def get_url_content(url: str):
 
 @app.route("/")
 def home():
-    url = 'https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2020-11-01/"' + _tdate + '"?apiKey=HBSH9Fc30LZbumAvQXssFHbqw8jBgoeEcI3nTe'
+    url_core = "https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2020-11-01/"
+    url = f"{url_core}{_tdate}?apiKey={POLYGON_APIKEY}"    
     content = get_url_content(url)
     aapl_data = content["results"]
     return render_template("home.html", source=aapl_data)
@@ -39,7 +43,6 @@ def tickers():
     content = get_url_content(url)
     mytickers = content["tickers"]
     return render_template("tickers.html", source=mytickers)
-
 
 if __name__ == "__main__":
     app.run()
