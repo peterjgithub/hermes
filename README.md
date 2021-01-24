@@ -1,14 +1,6 @@
 # hermes
 stock exchanges, quotes, technical analysis, etc
 
-## Installation
-
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install hermes.
-
-```bash
-pip install xxx
-```
-see requirements.txt to install all packages
 
 ## Usage
 
@@ -23,10 +15,21 @@ when finished: stop flask (ctrl+c) and terminate venv:
 deactivate
 ```
 
+
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install hermes.
+
+```bash
+pip install xxx
+```
+see requirements.txt to install all packages
+
 generate requirements.txt:
 ```
 pip freeze > requirements.txt
 ```
+
 
 ## Contributing
 

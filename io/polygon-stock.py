@@ -1,25 +1,26 @@
 import requests
 from requests.exceptions import HTTPError, Timeout
+from datetime import date
+# BDay is business day, not birthday...
+from pandas.tseries.offsets import BDay
 
 
-def __get_per_page__(type: str, perpage: int, page: int):
-    print(f"__get_tickers_from_polygon_per_page__(type={type}, perpage={perpage}, page={page})")
+def __get_Grouped_Daily_Bars__(from_date: date):
+    _beginning_date = str(from_date)
+    print(f"__get_Grouped_Daily_Bars__(from_date={_beginning_date})")
+
     try:
         polygon_url = "https://api.polygon.io"
-        api = "/v2/reference/tickers"
+        api = "/v2/aggs/grouped/locale/us/market/stocks/" + _beginning_date
         payload = {
-            'sort': 'ticker', 
-            'type': type,
-            # 'market': '',
-            # 'locale': '',
-            'perpage': perpage,
-            'page': page,
-            'active': 'true',
+            'unadjusted': "false",
             'apiKey': '0kJfuiJORnO7nGk_Sh2EUiOJWeKpT04p',
             }
         timeout = 10
         r = requests.get(polygon_url+api, params=payload, timeout=timeout)
-        return r
+        rjson = r.json()
+        resultlist = list(rjson["results"])
+        return resultlist
 
     except HTTPError as http_err:
         print(f'HTTP error occurred: {http_err}')
@@ -31,27 +32,11 @@ def __get_per_page__(type: str, perpage: int, page: int):
         print(f'Other error occurred: {err}')
 
 
-def __get__(type: str):
-
-    perpage = 500
-    i = 0
-    r_count = 1
-    tickerlist = list()
-
-    while ((i * perpage) < r_count):
-        i += 1
-        r = __get_tickers_from_polygon_per_page__(type, perpage, i)
-        rjson = r.json()
-        if r_count == 1:
-            r_count = int(rjson["count"])
-        tickerlist = tickerlist + list((rjson["tickers"]))
-
-    return tickerlist
-
-
 # Get the daily open, high, low, and close (OHLC) for the entire stocks/equities markets.
-def get_Grouped_Daily(date):
-    return "/v2/aggs/grouped/locale/us/market/stocks/{date}"
+def get_Grouped_Daily_Bars(from_date: date):
+    last_business_day = date.today() - BDay(1)
+    from_date = from_date if from_date is not None else last_business_day
+    return __get_Grouped_Daily_Bars__(from_date)
 
 
 def get_Daily_Open_Close(ticker: str, date):
@@ -59,9 +44,13 @@ def get_Daily_Open_Close(ticker: str, date):
 
 
 # timespan: minute - hour - day - week - month - quarter - year
-def get_Aggregates_Bars(ticker: str, multiplier, timespan, from, to):
+def get_Aggregates_Bars(ticker: str):
+    # ticker: str, multiplier, timespan, from, to
     return "/v2/aggs/ticker/{stocksTicker}/range/{multiplier}/{timespan}/{from}/{to}"
 
 
-
-
+# from_date = date.today() - timedelta(days=2)
+# result = get_Grouped_Daily_Bars(from_date)
+# # print(str(result))
+# print(f"result count = {len(result)}")
+# print(f"first result : {result[0]}")
