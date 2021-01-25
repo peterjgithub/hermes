@@ -4,7 +4,7 @@ from urllib.request import urlopen
 from datetime import date, datetime
 from polygon import RESTClient 
 from dotenv import load_dotenv
-from models import Quote
+# from models import Quote
 import os
 
 load_dotenv()
@@ -25,13 +25,11 @@ def ts_to_date(ts) -> str:
 
 
 @app.route("/")
-def home():
+def tickers():
     with RESTClient(apiKey) as client:
-        resp = client.stocks_equities_aggregates('AAPL', 1, 'day', date(2020,11,1), date.today())
-        quotes = resp.results
-        for quote in quotes:
-            quote['t'] = ts_to_date(quote['t'])
-    return render_template("home.html", source=quotes)
+        resp = client.reference_tickers(sort='ticker')
+        mytickers = resp.tickers
+    return render_template("tickers.html", source=mytickers)
 
 
 @app.route("/updates")
@@ -44,12 +42,14 @@ def updates():
     return render_template("updates.html", source=quotes)
 
 
-@app.route("/tickers")
-def tickers():
+@app.route("/aapl")
+def aapl():
     with RESTClient(apiKey) as client:
-        resp = client.reference_tickers(sort='ticker')
-        mytickers = resp.tickers
-    return render_template("tickers.html", source=mytickers)
+        resp = client.stocks_equities_aggregates('AAPL', 1, 'day', date(2020,11,1), date.today())
+        quotes = resp.results
+        for quote in quotes:
+            quote['t'] = ts_to_date(quote['t'])
+    return render_template("aapl.html", source=quotes)
 
 
 if __name__ == "__main__":
