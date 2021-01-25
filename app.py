@@ -35,7 +35,7 @@ def tickers():
 @app.route("/updates")
 def updates():
     with RESTClient(apiKey) as client:
-        resp = client.stocks_equities_grouped_daily('us', 'stocks', date(2021,1,22))
+        resp = client.stocks_equities_grouped_daily('us', 'stocks', date(2021,1,22), unadjusted=True)
         quotes = resp.results
         for quote in quotes:
             quote['t'] = ts_to_date(quote['t'])
