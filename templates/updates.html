@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+	<title>Hermes Quotes Analysis</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	
+	<style>
+		body {
+		  margin-bottom: 60px;
+		}
+		.footer {
+		  height: 40px;
+		  line-height: 40px;
+		  background-color: #f5f5f5;
+		}
+	  </style>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col">
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<a class="navbar-brand" href="#">Home</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+						aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarText">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item active">
+								<a class="nav-link" href="/">Updates <span class="sr-only">(current)</span></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/exchanges">Stock Exchanges</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/tickers">Tickers</a>
+							</li>
+						</ul>
+						<span class="navbar-text">
+							Quotes analysis
+						</span>
+					</div>
+				</nav>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col">
+				<h1>Updates </h1>
+				<!-- {'v': 7617, 'vw': 109.442, 'o': 109.62, 'c': 109.15, 'h': 109.62, 'l': 109.02, 't': 1604307600000, 'n': 55} -->
+				<div class="table-responsive">
+					<table class="table table-hover table-sm">
+						<caption>Updates</caption>
+						<thead class="thead-light">
+							<tr>
+								<th scope="col">time todo:convert</th>
+								<th scope="col">ticker</th>
+								<th scope="col">volume</th>
+								<th scope="col">volume weighted avg price</th>
+								<th scope="col">open</th>
+								<th scope="col">close</th>
+								<th scope="col">highest</th>
+								<th scope="col">lowest</th>
+								<th scope="col">items aggregated</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for quote in source %}
+							<tr>
+								<th scope="row">{{quote.t}}</th>
+								<td>{{quote.T}}</td>
+								<td>{{quote.v}}</td>
+								<td>{{quote.vw}}</td>
+								<td>{{quote.o}}</td>
+								<td>{{quote.c}}</td>
+								<td>{{quote.h}}</td>
+								<td>{{quote.l}}</td>
+								<td>{{quote.n}}</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+				<span>{{source_to_html_from_app}}</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col text-center">
+			  <div class="footer fixed-bottom">
+				©2021
+			  </div>
+			</div>
+		  </div>
+	</div>
+</body>
+
+</html>
