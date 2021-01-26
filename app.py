@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
+# from flask_sqlalchemy import SQLAlchemy
 from urllib.request import urlopen
 from datetime import date, datetime
 from polygon import RESTClient 
@@ -11,9 +11,9 @@ load_dotenv()
 apiKey = os.getenv("POLYGON_APIKEY")
 
 app = Flask(__name__)
-app.config.from_object(os.environ['APP_SETTINGS'])
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
-db = SQLAlchemy(app)
+# app.config.from_object(os.environ['APP_SETTINGS'])
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
+# db = SQLAlchemy(app)
 
 
 def ts_to_datetime(ts) -> str:

@@ -14,3 +14,6 @@ eg route /updates
 
 /middleware : connectors 
 => updates.py
+
+
+set APP_SETTINGS=config.ProductionConfig --remote pro
