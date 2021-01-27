@@ -4,6 +4,7 @@ from sqlalchemy.sql.schema import Column
 from sqlalchemy.sql.sqltypes import Integer, Numeric, Date, String
 import uuid
 
+
 class Quote(db.Model):
     __tablename__ = 'quotes'
 

@@ -1,0 +1,54 @@
+# DEV/TEST
+# this .env file is not merged and distributed over Github
+# generic (non-secret) parameters can be stored in config.py
+# secret params should be set locally on each environment as environment variables
+
+# export is for easy copy-paste, has no influence on reading the variables by load_env
+
+# Environment
+export ENVIRONMENT=development
+export APP_SETTINGS=config.DevelopmentConfig
+
+# Flask
+export FLASK_APP=app.py
+export FLASK_ENV=development
+export FLASK_DEBUG=1
+
+# Polygon
+export POLYGON_APIKEY=HBSH9Fc30LZbumAvQXssFHbqw8jBgoeEcI3nTe
+
+# DB
+export MONGO_PORT=27017
+export MONGO_DBNAME=findata
+export MONGO_COLLECTION=symbols
+export MONGO_URL=mongodb+srv://admin:pUZwSHYJbTmFn4YE@cluster0.n8w4q.mongodb.net/<findata>?retryWrites=true&w=majority
+export POSTGRESQL_URL=postgres://tyswlnnq:n3eeVBiLlPGSAVBZF2QyyYjSBh37_X40@rogue.db.elephantsql.com:5432/tyswlnnq
+
+# digitalocean has these environment variables:
+# PYTHONUNBUFFERED=
+# LC_ALL=
+# LD_LIBRARY_PATH=
+# PYTHONHOME=
+# LANG=en_US.UTF-8
+# HOSTNAME=
+# KUBERNETES_PORT_443_TCP_PROTO=
+# KUBERNETES_PORT_443_TCP_ADDR=
+# PYTHONHASHSEED=
+# FORWARDED_ALLOW_IPS=
+# KUBERNETES_PORT=
+# PWD=
+# HOME=
+# KUBERNETES_SERVICE_PORT_HTTPS=
+# DEBIAN_FRONTEND=
+# DATABASE_URL=
+# KUBERNETES_PORT_443_TCP_PORT=
+# PORT=
+# LIBRARY_PATH=
+# GUNICORN_CMD_ARGS=
+# KUBERNETES_PORT_443_TCP=
+# TERM=
+# SHLVL=
+# PYTHONPATH=
+# KUBERNETES_SERVICE_PORT=
+# PATH=
+# KUBERNETES_SERVICE_HOST=

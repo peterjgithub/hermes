@@ -30,6 +30,42 @@ generate requirements.txt:
 pip freeze > requirements.txt
 ```
 
+## application structure
+
+/hermes
+    /app
+        __init__.py
+        /static
+        /templates
+        views.py
+    config.py
+    runner.py
+
+
+/hermes
+=> The app_dir is the root directory of the Flask project.
+
+/hermes/config.py	
+=> The config.py contains settings and configuration for the Flask application.
+
+/hermes/runner.py	
+=> The entry point for your Flask application.
+
+/hermes/app	
+=> The app directory is a Python package which holds views, templates, and static files.
+
+/hermes/app/__init__.py	
+=> The __init__.py tells the Python that app directory is a Python package.
+
+/hermes/app/static	
+=> The static directory contains the static files of the project.
+
+/hermes/app/templates	
+=> The templates directory contains templates.
+
+/hermes/app/views.py	
+=> The views.py contains routes and view functions.
+
 
 ## Contributing
 
