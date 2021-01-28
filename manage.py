@@ -41,7 +41,10 @@ print("initiate manage.py")
 # app.config.from_object(os.environ['APP_SETTINGS'])
 
 migrate = Migrate(app, db)
+print("finished: migrate = Migrate(app, db)")
+
 manager = Manager(app)
+print("finished: manager = Manager(app)")
 
 manager.add_command('db', MigrateCommand)
 
