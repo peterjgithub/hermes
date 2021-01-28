@@ -9,12 +9,14 @@ load_dotenv()
 app = Flask(__name__)
 
 print(f"OS var ENVIRONMENT={os.getenv('ENVIRONMENT')}")
-# print(f"app.config['ENVIRONMENT']={app.config['ENVIRONMENT']}")
+
 ENVIRONMENT = os.getenv('ENVIRONMENT')
 print(f'ENVIRONMENT={ENVIRONMENT}')
+
 if ENVIRONMENT == 'production':
     print("loading configs from hermes_config.ProductionConfig")
     app.config.from_object('hermes_config.ProductionConfig')
+
 if ENVIRONMENT == 'development':
     print("loading configs from hermes_config.DevelopmentConfig")
     app.config.from_object('hermes_config.DevelopmentConfig')

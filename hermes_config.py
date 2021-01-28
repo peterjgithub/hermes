@@ -37,11 +37,9 @@ class BaseConfig(object):
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
-    # SECRET_KEY = 'v9y$B&E)H@McQfTjWnZr4t7w!z%C*F-JaNdRgUkXp2s5v8x/A?D('
-    # POLYGON_APIKEY = 'HBSH9Fc30LZbumAvQXssFHbqw8jBgoeEcI3nTe'
     POLYGON_APIKEY = os.getenv("POLYGON_APIKEY")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    ALEMBIC_INI = '/Users/peter/GitHub/hermes/migrations/alembic.ini'
+    ALEMBIC_INI = os.path.join(basedir, 'migrations', 'alembic.ini')
     SECRET_KEY = os.getenv("SECRET_KEY")
 
     # APP_SETTINGS=os.getenv("APP_SETTINGS")
