@@ -42,6 +42,7 @@ class BaseConfig(object):
     POLYGON_APIKEY = os.getenv("POLYGON_APIKEY")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     ALEMBIC_INI = '/Users/peter/GitHub/hermes/migrations/alembic.ini'
+    SECRET_KEY = os.getenv("SECRET_KEY")
 
     # APP_SETTINGS=os.getenv("APP_SETTINGS")
 
