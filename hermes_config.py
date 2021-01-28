@@ -63,6 +63,7 @@ class ProductionConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
     POSTGRESQL_URL = os.getenv("DATABASE_URL")
     SQLALCHEMY_TRACK_MODIFICATIONS = True
+    SQLALCHEMY_ECHO = True
 
 
 # class StagingCfg(BaseCfg):
