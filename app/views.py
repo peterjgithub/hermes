@@ -4,6 +4,8 @@ from datetime import date, datetime
 from polygon import RESTClient 
 import os
 
+print("initiate views.py")
+
 apiKey = os.environ.get("POLYGON_APIKEY")
 
 def ts_to_datetime(ts) -> str:
@@ -43,4 +45,5 @@ def aapl():
 
 
 if __name__ == "__main__":
+    print("initiate views- __name==__main__")
     app.run()

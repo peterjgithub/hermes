@@ -4,8 +4,10 @@ from sqlalchemy.sql.schema import Column
 from sqlalchemy.sql.sqltypes import Integer, Numeric, Date, String
 import uuid
 
+print("initiate models.py")
 
 class Quote(db.Model):
+    print("initiate class models.Quote(db.Model)")
     __tablename__ = 'quotes'
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True)
@@ -32,4 +34,5 @@ class Quote(db.Model):
         self.wvolume = wvolume
 
     def __repr__(self):
+        print("initiate models.py __repr__(self)")
         return '<id {}>'.format(self.id)

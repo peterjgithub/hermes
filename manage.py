@@ -4,6 +4,8 @@ from flask_migrate import Migrate, MigrateCommand
 from dotenv import load_dotenv
 from app import app, db
 
+print("initiate manage.py")
+
 # info: https://realpython.com/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/
 
 # 1) initialize Alembic (creates /migrations folder):
@@ -17,24 +19,26 @@ from app import app, db
 # python manage.py db upgrade
 
 
-load_dotenv()
-print("manage.py")
-FLASK_ENV = os.getenv('FLASK_ENV')
-print(f"FLASK_ENV = {FLASK_ENV}")
+# load_dotenv()
+# print("manage.py")
+# FLASK_ENV = os.getenv('FLASK_ENV')
+# print(f"FLASK_ENV = {FLASK_ENV}")
+
+# # app.config.from_object(os.environ['APP_SETTINGS'])
+# ENVIRONMENT = os.getenv('ENVIRONMENT')
+# print(f"ENVIRONMENT = {ENVIRONMENT}")
+
+# if ENVIRONMENT == 'production':
+#     app.config.from_object('hermes_config.ProductionConfig')
+#     DEVELOPMENT = os.getenv('DEVELOPMENT')
+#     print(f"DEVELOPMENT = {DEVELOPMENT}")
+
+# if ENVIRONMENT == 'development':
+#     app.config.from_object('hermes_config.DevelopmentConfig')
+#     SQLALCHEMY_TRACK_MODIFICATIONS = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS')
+#     print(f"SQLALCHEMY_TRACK_MODIFICATIONS = {SQLALCHEMY_TRACK_MODIFICATIONS}")
 
 # app.config.from_object(os.environ['APP_SETTINGS'])
-ENVIRONMENT = os.getenv('ENVIRONMENT')
-print(f"ENVIRONMENT = {ENVIRONMENT}")
-
-if ENVIRONMENT == 'production':
-    app.config.from_object('hermes_config.ProductionConfig')
-    DEVELOPMENT = os.getenv('DEVELOPMENT')
-    print(f"DEVELOPMENT = {DEVELOPMENT}")
-
-if ENVIRONMENT == 'development':
-    app.config.from_object('hermes_config.DevelopmentConfig')
-    SQLALCHEMY_TRACK_MODIFICATIONS = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS')
-    print(f"SQLALCHEMY_TRACK_MODIFICATIONS = {SQLALCHEMY_TRACK_MODIFICATIONS}")
 
 migrate = Migrate(app, db)
 manager = Manager(app)
@@ -43,4 +47,5 @@ manager.add_command('db', MigrateCommand)
 
 
 if __name__ == '__main__':
+    print("initiate manage.py __name__ = __main__")
     manager.run()
