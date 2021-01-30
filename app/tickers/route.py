@@ -3,7 +3,7 @@ from datetime import date, datetime
 from polygon import RESTClient 
 import os
 
-print("initiate tickers.py")
+print("initiate tickers-route.py")
 
 tickers_bp = Blueprint(
     "tickers_bp", 

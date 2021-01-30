@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template
 
+print("initiate admin-route.py")
+
 admin_bp = Blueprint(
     "admin_bp", 
     __name__, 
