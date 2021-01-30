@@ -1,77 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<html>
+{% extends "base_template.html" %}
 
-<head>
-	<title>Hermes Quotes Analysis</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<link rel="shortcut icon" href="{{ url_for('static', filename='img/h.png') }}">
-	<style>
-		body {
-		  margin-bottom: 60px;
-		}
-		.footer {
-		  height: 40px;
-		  line-height: 40px;
-		  background-color: #f5f5f5;
-		}
-	  </style>
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
+{% set active_page = "Admin" %}
 
-<body>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col">
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
-					<a class="navbar-brand" href="#">Admin</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-						aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarText">
-						<ul class="navbar-nav mr-auto">
-							<li class="nav-item">
-								<a class="nav-link" href="/">Home</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="/tickers/">Tickers</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="/tickers/updates">All last updates</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="/tickers/aapl">Apple</a>
-							</li>
-						</ul>
-						<span class="navbar-text active">
-							<a class="nav-link" href="/admin/">Admin<span class="sr-only">(current)</span></a>
-						</span>
-					</div>
-				</nav>
-			</div>
+{% block title %}Administration | Hermes{% endblock %}
 
-		</div>
-		<div class="row">
-			<div class="col">
-				<h1>Administration </h1>
-				<p>Application name:</p>
-				<p>{{source.appname}}</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col text-center">
-			  <div class="footer fixed-bottom">
-				©2021
-			  </div>
-			</div>
-		  </div>
-	</div>
-</body>
-
-</html>
+{% block main %}
+<div class="row">
+    <div class="col">
+        <h1>Administration </h1>
+        <p>Application name:</p>
+        <p>{{source.appname}}</p>
+    </div>
+</div>
+{% endblock %}
