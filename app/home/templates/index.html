@@ -37,17 +37,23 @@
 					<div class="collapse navbar-collapse" id="navbarText">
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item active">
-								<a class="nav-link" href="/">Tickers</a>
+								<a class="nav-link" href="/">Home</a>
+							</li>
+							<li class="nav-item active">
+								<a class="nav-link" href="/tickers/">Tickers</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="/updates">All last updates<span class="sr-only">(current)</span></a>
+								<a class="nav-link" href="/tickers/updates">All last updates</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="/aapl">Apple</a>
+								<a class="nav-link" href="/tickers/aapl">Apple</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/admin/">Admin<span class="sr-only">(current)</span></a>
 							</li>
 						</ul>
 						<span class="navbar-text">
-							Quotes analysis
+							Admin
 						</span>
 					</div>
 				</nav>
@@ -56,42 +62,7 @@
 		</div>
 		<div class="row">
 			<div class="col">
-				<h1>Updates </h1>
-				<!-- {'v': 7617, 'vw': 109.442, 'o': 109.62, 'c': 109.15, 'h': 109.62, 'l': 109.02, 't': 1604307600000, 'n': 55} -->
-				<div class="table-responsive">
-					<table class="table table-hover table-sm">
-						<caption>Updates</caption>
-						<thead class="thead-light">
-							<tr>
-								<th scope="col">date</th>
-								<th scope="col">ticker</th>
-								<th scope="col">volume</th>
-								<th scope="col">volume weighted avg price</th>
-								<th scope="col">open</th>
-								<th scope="col">close</th>
-								<th scope="col">highest</th>
-								<th scope="col">lowest</th>
-								<th scope="col">items aggregated</th>
-							</tr>
-						</thead>
-						<tbody>
-							{% for quote in source %}
-							<tr>
-								<th scope="row">{{quote.t}}</th>
-								<td>{{quote.T}}</td>
-								<td>{{quote.v}}</td>
-								<td>{{quote.vw}}</td>
-								<td>{{quote.o}}</td>
-								<td>{{quote.c}}</td>
-								<td>{{quote.h}}</td>
-								<td>{{quote.l}}</td>
-								<td>{{quote.n}}</td>
-							</tr>
-							{% endfor %}
-						</tbody>
-					</table>
-				</div>
-				<span>{{source_to_html_from_app}}</span>
+				<h1>Home </h1>
 			</div>
 		</div>
 		<div class="row">

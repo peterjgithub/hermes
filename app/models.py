@@ -1,10 +1,11 @@
-from app import db
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.postgresql import UUID 
 from sqlalchemy.sql.schema import Column
 from sqlalchemy.sql.sqltypes import Integer, Numeric, Date, String
 import uuid
 
 print("initiate models.py")
+db = SQLAlchemy()
 
 class Quote(db.Model):
     print("initiate class models.Quote(db.Model)")

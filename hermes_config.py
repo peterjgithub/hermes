@@ -45,7 +45,7 @@ class BaseConfig(object):
     # APP_SETTINGS=os.getenv("APP_SETTINGS")
 
 
-class DevelopmentConfig(BaseConfig):
+class Development(BaseConfig):
     print("initiate class DevelopmentConfig(BaseConfig)")
     DEVELOPMENT = True
     DEBUG = True
@@ -55,7 +55,7 @@ class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
-class ProductionConfig(BaseConfig):
+class Production(BaseConfig):
     print("initiate class ProductionConfig(BaseConfig)")
     DEVELOPMENT = False
     DEBUG = False
