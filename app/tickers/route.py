@@ -1,7 +1,9 @@
 from flask import Blueprint, render_template
 from datetime import date, datetime
 from polygon import RESTClient 
+from app import models
 import os
+import uuid
 
 print("initiate tickers-route.py")
 
@@ -41,6 +43,22 @@ def updates():
 
 @tickers_bp.route("/aapl")
 def aapl():
+    newquote = models.Quote(
+        id = uuid.uuid4(),
+        ticker = "AAPL",
+        date = date(2020,11,2), 
+        open = 109.11, 
+        high = 110.68, 
+        low = 107.32, 
+        close = 108.77, 
+        adj_close = 108.77, 
+        volume = 122712099.0, 
+        wvolume = 108.6262
+    )
+    session = models.db.session
+    session.add(newquote)
+    session.commit()
+
     with RESTClient(apiKey) as client:
         resp = client.stocks_equities_aggregates('AAPL', 1, 'day', date(2020,11,1), date.today())
         quotes = resp.results

@@ -4,6 +4,54 @@ import os
 
 print("\n" + "initiate __init__.py")
 
+def main():
+    # Creating Instances of Plugin Objects
+    print("Connect to db...")
+    # db = SQLAlchemy()
+    migrate = Migrate()
+
+# App Creation
+def init_app(config_filename):
+    """Initialise the core application context."""
+    app = Flask(__name__, static_url_path='/static', template_folder='templates')
+    app.config.from_object(config_filename)
+    print_environment_variables(app)
+
+    # Plugin Initialization
+
+    # info use multiple databases: https://turbogears.readthedocs.io/en/latest/cookbook/multiple-databases.html
+    # from app.models import db
+    # db.init_app(app)
+    # migrate.init_app(app, db)
+
+    # migrate = Migrate(app, db)
+    # print("finished: migrate = Migrate(app, db)
+
+    # print("run db upgrade script")
+    # manager = Manager(app)
+    # print("finished: manager = Manager(app)")
+
+    # manager.add_command('db', MigrateCommand)
+
+    # Create Application Context
+    with app.app_context():
+        # from app import models
+        from app.models import db
+        db.init_app(app)
+
+        # https://realpython.com/flask-blueprint/
+
+        from app.home.route import home_bp
+        app.register_blueprint(home_bp) 
+
+        from app.tickers.route import tickers_bp
+        app.register_blueprint(tickers_bp, url_prefix='/tickers') 
+        
+        from app.admin.route import admin_bp
+        app.register_blueprint(admin_bp, url_prefix='/admin')
+
+    return app
+
 def print_environment_variables(app):
     print("\n" + "****** Flask app.configs ******")
     print(f'ENVIRONMENT: {app.config["ENVIRONMENT"]}')
@@ -56,47 +104,5 @@ def print_environment_variables(app):
     print(f'MONGO_COLLECTION: {os.getenv("MONGO_COLLECTION")}')
     print(f'MONGO_URL: {os.getenv("MONGO_URL")}')
 
-# Creating Instances of Plugin Objects
-print("Connect to db...")
-# db = SQLAlchemy()
-migrate = Migrate()
-
-# App Creation
-def init_app(config_filename):
-    """Initialise the core application context."""
-    app = Flask(__name__, static_url_path='/static', template_folder='templates')
-    app.config.from_object(config_filename)
-    print_environment_variables(app)
-
-    # Plugin Initialization
-
-    # info use multiple databases: https://turbogears.readthedocs.io/en/latest/cookbook/multiple-databases.html
-    # from app.models import db
-    # db.init_app(app)
-    # migrate.init_app(app, db)
-
-    # migrate = Migrate(app, db)
-    # print("finished: migrate = Migrate(app, db)
-
-    # print("run db upgrade script")
-    # manager = Manager(app)
-    # print("finished: manager = Manager(app)")
-
-    # manager.add_command('db', MigrateCommand)
-
-    # Create Application Context
-    with app.app_context():
-        # from app import models
-
-        # https://realpython.com/flask-blueprint/
-
-        from app.home.route import home_bp
-        app.register_blueprint(home_bp) 
-
-        from app.tickers.route import tickers_bp
-        app.register_blueprint(tickers_bp, url_prefix='/tickers') 
-        
-        from app.admin.route import admin_bp
-        app.register_blueprint(admin_bp, url_prefix='/admin')
-
-    return app
+if __name__ == '__main__':
+    main()

@@ -8,7 +8,22 @@
 <div class="row">
     <div class="col">
         <h1>Welcome Home</h1>
-        <p>FYI This is /app/home/templates/home.html</p>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <img src="{{ url_for('static', filename='img/esginvesting.png') }}" alt="ESG Investing logo" width=100%>
+      </div>
+      <div class="col-sm">
+        <img src="{{ url_for('static', filename='img/hermes_orange_wings.png') }}" alt="Hermes Wings" width=100%>
+      </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <p><i><small>FYI This is /app/home/templates/home.html <br>
+            extending app/templates/base_template.html</small></i></p>
     </div>
 </div>
 {% endblock %}
