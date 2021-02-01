@@ -20,7 +20,7 @@ class Quote(db.Model):
         )
     print("Index('quotes_ticker_date_time_idx', ticker, date_time, unique=True ) ok")
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True)
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     ticker = Column(String())
     date_time = Column(DateTime)
     open = Column(Numeric)
