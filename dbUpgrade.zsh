@@ -8,16 +8,20 @@
 # chmod u+x ./dbUpgrade.zsh
 # chmod u+x ./dbmanager.py
 
-# run script:
+# run script in virtual environment with python3 and packages in requirements.txt installed:
 # ./dbUpgrade.zsh 
 
-echo -n "This script will\n"
-echo -n "apply all upgrade scripts to the db,\n"
+set -v
+# This script will
+# --> apply all upgrade scripts to the db
+
+set +v
 echo -n "Type 5 if you are sure to continue "
 read VAR
 
 if [[ $VAR -eq 5 ]]
 then
+  set -v
   python dbmanager.py db upgrade
 fi
 

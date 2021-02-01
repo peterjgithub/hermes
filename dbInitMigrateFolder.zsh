@@ -8,32 +8,21 @@
 # chmod u+x ./dbInitMigrateFolder.zsh
 # chmod u+x ./dbmanager.py
 
-# run script:
+# run script in virtual environment with python3 and packages in requirements.txt installed:
 # ./dbInitMigrateFolder.zsh 
 
-echo -n "This script is initializing Alembic:\n"
-echo -n "create a migration folder & scripts\n"
-echo -n "This is very exceptional and should only happen once\n"
+set -v
+# This script is initializing Alembic:
+# --> create a migration folder & scripts
+# "This is very exceptional and should only happen once
+set +v
 echo -n "type 5 if you are sure to continue "
 read VAR
 
 if [[ $VAR -eq 5 ]]
 then
+  set -v
   python dbmanager.py db init
 fi
 
-
-# FLASK MIGRATE INFO
-# ******************
-# Flask Migrate info: https://flask-migrate.readthedocs.io/en/latest/
-# Flask Migrate sample: https://realpython.com/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/
-
-# 1) (only once) initialize Alembic (creates /migrations folder):
-
-
-# 2) (dev only) create our first migration script (/versions update):
-# python manage.py db migrate
-
-# 3) apply the upgrades to the database:    
-# python manage.py db upgrade
 
