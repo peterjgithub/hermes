@@ -1,7 +1,5 @@
 from flask import Flask
 import os
-from sqlalchemy.engine.reflection import Inspector
-from sqlalchemy import create_engine
 
 
 print("\n" + "initiate __init__.py")

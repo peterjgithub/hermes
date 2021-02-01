@@ -50,17 +50,3 @@ class Quote(db.Model):
     def __repr__(self):
         print("initiate models.py Quote() __repr__(self)")
         return '<id {}>'.format(self.id)
-
-class TestObject(db.Model):
-    print("initiate class models.TestObject(db.Model)")
-    __tablename__ = 'tests'
-
-    id = Column(Numeric, primary_key=True, unique=True)
-
-    def __init__(self, id ):
-        print("starting models.py TestObject() __init__")
-        self.id = id
-
-    def __repr__(self):
-        print("initiate models.py TestObject() __repr__(self)")
-        return '<id {}>'.format(self.id)

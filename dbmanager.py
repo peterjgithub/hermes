@@ -6,11 +6,6 @@ import os
 
 print("initiate dbmanager.py")
 
-# print("start db = SQLAlchemy()")
-# db = SQLAlchemy()
-
-# def create_app():
-
 print("start app = Flask(__name__)")
 app = Flask(__name__)
 
@@ -35,18 +30,7 @@ manager.add_command('db', MigrateCommand)
 
 # importing the models to make sure they are known to Flask-Migrate
 print(f"starting from app.models import Quote")
-from app.models import Quote
-print(f"starting from app.models import TestObject")
-from app.models import TestObject
-
-    # any other registrations; blueprints, template utilities, commands
-    # print(f"finished call - return app")
-    # return app
-
-# if __name__ == '__main__':
-#     print("initiating __init__.py - __name__ == '__main__'")
-#     print("from __name__ launching create_app()")
-#     create_app()
+from app import models
 
 if __name__ == '__main__':
     manager.run()
