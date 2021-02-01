@@ -26,6 +26,9 @@
 
 import os
 
+from dotenv import load_dotenv
+load_dotenv()
+
 print("initiate hermes_config.py")
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -33,12 +36,12 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class BaseConfig(object):
     print(f"initiate class BaseConfig({object})")
-    ENVIRONMENT = os.getenv("ENVIRONMENT")
+    ENVIRONMENT = os.getenv("ENVIRONMENT", "development").lower()
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
     POLYGON_APIKEY = os.getenv("POLYGON_APIKEY")
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    ALEMBIC_MIGRATIONS_FOLDER = 'migrations'
     ALEMBIC_INI = os.path.join(basedir, 'migrations', 'alembic.ini')
     SECRET_KEY = os.getenv("SECRET_KEY")
 

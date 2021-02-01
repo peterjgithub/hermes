@@ -1,45 +1,29 @@
 from flask import Flask
-from flask_migrate import Migrate, MigrateCommand
 import os
+from sqlalchemy.engine.reflection import Inspector
+from sqlalchemy import create_engine
+
 
 print("\n" + "initiate __init__.py")
 
-def main():
-    # Creating Instances of Plugin Objects
-    print("Connect to db...")
-    # db = SQLAlchemy()
-    migrate = Migrate()
-
-# App Creation
-def init_app(config_filename):
-    """Initialise the core application context."""
+# App factory
+def create_app(config_filename):
+    """
+    Initialise the core application context.
+    """
     app = Flask(__name__, static_url_path='/static', template_folder='templates')
     app.config.from_object(config_filename)
     print_environment_variables(app)
 
-    # Plugin Initialization
+    print("starting from app.models import db")
+    from app.models import db
 
-    # info use multiple databases: https://turbogears.readthedocs.io/en/latest/cookbook/multiple-databases.html
-    # from app.models import db
-    # db.init_app(app)
-    # migrate.init_app(app, db)
-
-    # migrate = Migrate(app, db)
-    # print("finished: migrate = Migrate(app, db)
-
-    # print("run db upgrade script")
-    # manager = Manager(app)
-    # print("finished: manager = Manager(app)")
-
-    # manager.add_command('db', MigrateCommand)
-
-    # Create Application Context
     with app.app_context():
-        # from app import models
-        from app.models import db
+
+        print("starting db.init_app(app)")
         db.init_app(app)
 
-        # https://realpython.com/flask-blueprint/
+        print("starting configure_blueprints(app)")
 
         from app.home.route import home_bp
         app.register_blueprint(home_bp) 
@@ -50,7 +34,11 @@ def init_app(config_filename):
         from app.admin.route import admin_bp
         app.register_blueprint(admin_bp, url_prefix='/admin')
 
+        print("finished configure_blueprints(app)")
+
     return app
+
+
 
 def print_environment_variables(app):
     print("\n" + "****** Flask app.configs ******")
@@ -105,4 +93,4 @@ def print_environment_variables(app):
     print(f'MONGO_URL: {os.getenv("MONGO_URL")}')
 
 if __name__ == '__main__':
-    main()
+    print("initiating __init__.py - __name__ == '__main__'")
