@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 from datetime import date, datetime
 from polygon import RESTClient 
-from app.models import db, Quote
+from app.models import db, Quote, get_aapl_quotes
 import os
 import uuid
 
@@ -43,27 +43,29 @@ def updates():
 
 @tickers_bp.route("/aapl")
 def aapl():
-    newquote = Quote(
-        id = uuid.uuid4(),
-        ticker = "AAPL",
-        date_time = datetime(2020,11,2,22,0), 
-        open = 109.11, 
-        high = 110.68, 
-        low = 107.32, 
-        close = 108.77, 
-        adj_close = 108.77, 
-        volume = 122712099.0, 
-        volume_weighted_avg_price = 108.6262
-    )
-    session = db.session
-    session.add(newquote)
-    session.commit()
+    # newquote = Quote(
+    #     id = uuid.uuid4(),
+    #     ticker = "AAPL",
+    #     date_time = datetime(2020,11,2,22,0), 
+    #     open = 109.11, 
+    #     high = 110.68, 
+    #     low = 107.32, 
+    #     close = 108.77, 
+    #     adj_close = 108.77, 
+    #     volume = 122712099.0, 
+    #     volume_weighted_avg_price = 108.6262
+    # )
+    # session = db.session
+    # session.add(newquote)
+    # session.commit()
 
-    with RESTClient(apiKey) as client:
-        resp = client.stocks_equities_aggregates('AAPL', 1, 'day', date(2020,11,1), date.today())
-        quotes = resp.results
-        for quote in quotes:
-            quote['t'] = ts_to_date(quote['t'])
+    quotes = get_aapl_quotes()
+
+    # with RESTClient(apiKey) as client:
+    #     resp = client.stocks_equities_aggregates('AAPL', 1, 'day', date(2020,11,1), date.today())
+    #     quotes = resp.results
+    #     for quote in quotes:
+    #         quote['t'] = ts_to_date(quote['t'])
     return render_template("aapl.html", source=quotes)
 
 

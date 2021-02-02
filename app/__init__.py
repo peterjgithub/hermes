@@ -10,13 +10,14 @@ def create_app(config_filename):
     Initialise the core application context.
     """
     app = Flask(__name__, static_url_path='/static', template_folder='templates')
-    app.config.from_object(config_filename)
-    print_environment_variables(app)
 
     print("starting from app.models import db")
     from app.models import db
 
     with app.app_context():
+
+        app.config.from_object(config_filename)
+        print_environment_variables(app)
 
         print("starting db.init_app(app)")
         db.init_app(app)

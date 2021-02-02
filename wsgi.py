@@ -8,6 +8,7 @@ config_file = f"hermes_config.{environment}"
 
 print(f"launching init_app({config_file})")
 app = create_app(config_file)
+app.app_context().push()
 
 if __name__ == "__main__":
     print("initiate wsgi.py - if __name__ ==__main__")

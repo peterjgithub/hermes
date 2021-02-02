@@ -30,6 +30,15 @@ generate requirements.txt:
 pip freeze > requirements.txt
 ```
 
+to upgrade pip to the latest version:
+```
+/Users/peter/GitHub/hermes/venv/bin/python3 -m pip install --upgrade pip
+```
+list all outdated packages (eg in venv):
+```
+pip list --outdated                                                     
+```
+
 ## application structure
 
 /hermes
