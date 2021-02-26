@@ -4,11 +4,18 @@ stock exchanges, quotes, technical analysis, etc
 
 ## Usage
 
+create virtual environment:
+```
+python3 -m venv venv
+```
+
 starting flask app in dev:
 ```
 source venv/bin/activate
 flask run
 ```
+
+(or . venv/bin/activate)
 
 when finished: stop flask (ctrl+c) and terminate venv:
 ```
@@ -21,23 +28,31 @@ deactivate
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install hermes.
 
 ```bash
-pip install xxx
+pip3 install --upgrade xxx
 ```
 see requirements.txt to install all packages
 
 generate requirements.txt:
 ```
-pip freeze > requirements.txt
+pip3 freeze > requirements.txt
 ```
 
 to upgrade pip to the latest version:
 ```
-/Users/peter/GitHub/hermes/venv/bin/python3 -m pip install --upgrade pip
+/Users/peter/GitHub/hermes/venv/bin/python3 -m pip3 install --upgrade pip
 ```
 list all outdated packages (eg in venv):
 ```
-pip list --outdated                                                     
+pip3 list --outdated                                                     
 ```
+
+to update all venv packages according to requirements.txt
+```
+pip3 install --upgrade -r requirements.txt
+```
+
+My last python version:
+/opt/homebrew/opt/python@3.9/libexec/bin
 
 ## application structure
 

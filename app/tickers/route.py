@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from polygon import RESTClient 
-from app.models import db, Quote, get_aapl_quotes
+from app.models import db, Quote, get_aapl_quotes, save_quotes
 import os
 import uuid
 
@@ -34,10 +34,26 @@ def tickers():
 @tickers_bp.route("/updates")
 def updates():
     with RESTClient(apiKey) as client:
-        resp = client.stocks_equities_grouped_daily('us', 'stocks', date(2021,1,22), unadjusted=True)
-        quotes = resp.results
-        for quote in quotes:
-            quote['t'] = ts_to_date(quote['t'])
+        return7days = (datetime.now() - timedelta(days=1)).date()
+        # return7days = (datetime.now() - timedelta(days=20)).date()
+        response = client.stocks_equities_grouped_daily('us', 'stocks', return7days, unadjusted=True)
+    api_results = response.results
+    quotes = list()
+    for result in api_results:
+        quotes.append(Quote(
+            id=uuid.uuid4(),
+            ticker=result.get('T'),
+            volume=result.get('v'),
+            volume_weighted_avg_price=result.get('vw'),
+            open=result.get('o'),
+            adj_close=result.get('c'),
+            close=result.get('c'),
+            high=result.get('h'),
+            low=result.get('l'),
+            date_time=ts_to_date(result.get('t')),                
+            )
+        )
+    save_quotes(quotes)
     return render_template("updates.html", source=quotes)
 
 

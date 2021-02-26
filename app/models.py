@@ -1,9 +1,14 @@
+from re import DEBUG
+from typing import List
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.dialects.postgresql import UUID 
+from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm.session import sessionmaker 
 from sqlalchemy.sql.schema import Column, Index
+from sqlalchemy import create_engine
 from sqlalchemy.sql.sqltypes import Integer, Numeric, String, DateTime
 import uuid
 import sys
+
 
 
 print("initiate models.py")
@@ -35,7 +40,7 @@ class Quote(db.Model):
 
 
     def __init__(self, id, ticker, date_time, open, high, low, close, adj_close, volume, volume_weighted_avg_price):
-        print("starting models.py Quote() __init__")
+        # print("starting models.py Quote() __init__")
         self.id = id
         self.ticker = ticker
         self.date_time = date_time
@@ -46,7 +51,7 @@ class Quote(db.Model):
         self.adj_close = adj_close
         self.volume = volume
         self.volume_weighted_avg_price = volume_weighted_avg_price
-        print("finished __init__")
+        # print("finished __init__")
 
     def __repr__(self):
         print("initiate models.py Quote() __repr__(self)")
@@ -60,14 +65,68 @@ def get_aapl_quotes():
         print("Unexpected error:", sys.exc_info()[0])
     return results
 
-def bulk_upload_quotes(quotes):
+def save_quotes(quotes):
 
-    try:
-        s = db.session
-        s.add_all(quotes)
-        s.commit
-    except:
-        print("Unexpected error:", sys.exc_info()[0])
+    
+    # conn_string = "postgres://tyswlnnq:n3eeVBiLlPGSAVBZF2QyyYjSBh37_X40@rogue.db.elephantsql.com:5432/tyswlnnq"
+    # engine = create_engine(conn_string)
+    # Session = sessionmaker(bind=engine)
+    # session = Session()
+    session = db.session
+
+    i = 0
+    j = 0
+    buffer = []
+    for quote in quotes:
+        buffer.append(quote)
+        i+=1
+        print(f"quote: {i}")
+        if i % 100 == 0:
+            j+=1
+            print(f"buffer commit batch {j}")
+            session.bulk_save_objects(buffer)
+            session.commit()
+            # buffer = []
+        if i==200:
+            break
+            
+    # session.bulk_insert_mappings(Quote, buffer)
+    session.commit()
+
+    # conn_string = "postgres://tyswlnnq:n3eeVBiLlPGSAVBZF2QyyYjSBh37_X40@rogue.db.elephantsql.com:5432/tyswlnnq"
+    # engine = create_engine(conn_string)
+    # quotes_dict = dict(quotes)
+    # engine.execute(Quote.__table__.insert(), quotes_dict)
+
+    # try:
+    #     conn_string = db.app.config['SQLALCHEMY_DATABASE_URI']
+    #     engine = create_engine(conn_string)
+    #     engine.execute(Quote.__table__.insert(), quotes)
+
+        # print(f"starting session = db.session")
+        # session = db.session
+        # print(f"starting session.add_all(quotes)")
+        # session.bulk_insert_mappings(quotes)
+        # print(f"starting session.commit()")
+        # session.commit()
+    # except Exception as e:
+    #     print("Unexpected error:", sys.exc_info()[0])
+    #     print(str(e))
+    # newquote = Quote(
+    #     id = uuid.uuid4(),
+    #     ticker = "AAPL",
+    #     date_time = datetime(2020,11,3,22,0), 
+    #     open = 109.11, 
+    #     high = 110.68, 
+    #     low = 107.32, 
+    #     close = 108.77, 
+    #     adj_close = 108.77, 
+    #     volume = 122712099.0, 
+    #     volume_weighted_avg_price = 108.6262
+    # )
+    # session = db.session
+    # session.add(newquote)
+    # session.commit()
 
     # db.session
     #     default mode of autocommit=False 
